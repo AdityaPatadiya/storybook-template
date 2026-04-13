@@ -1,0 +1,39 @@
+{
+  "name": "@octo/trpc",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "clean": "rimraf dist .turbo *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@octo/db": "workspace:*",
+    "@prisma/client": "^5.22.0",
+    "@trpc/server": "^11.0.0",
+    "trpc-to-openapi": "^2.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@octo/eslint-config": "workspace:*",
+    "@octo/tsconfig": "workspace:*",
+    "@types/node": "^22.7.5",
+    "eslint": "^8.57.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  }
+}

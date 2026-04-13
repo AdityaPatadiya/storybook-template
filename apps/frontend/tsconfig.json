@@ -1,0 +1,12 @@
+{
+  "extends": "@octo/tsconfig/react.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "vite.config.ts", ".storybook"],
+  "exclude": ["node_modules", "dist", "storybook-static"]
+}

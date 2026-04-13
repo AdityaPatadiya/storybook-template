@@ -1,0 +1,17 @@
+node_modules
+dist
+build
+.turbo
+*.tsbuildinfo
+*.log
+coverage
+storybook-static
+
+.env
+.env.*
+!.env.example
+
+packages/db/prisma/*.db
+packages/db/prisma/*.db-journal
+
+/generated/prisma
