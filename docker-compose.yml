@@ -1,0 +1,36 @@
+# MongoDB is the canonical datastore for the GENERATED APPLICATION that
+# runs inside this monorepo (apps/backend). It is NOT the datastore for
+# octo-studio itself (that lives in a separate cloud MongoDB).
+#
+# The default MongoDB URI the backend should use is:
+#   mongodb://localhost:27017/octo_app
+#
+# Start with: `docker compose up -d mongodb`
+# Or run the full bootstrap: `bash scripts/bootstrap.sh`
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: octo-app-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - octo_app_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: octo_app
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "db.adminCommand('ping').ok"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+volumes:
+  octo_app_mongo_data:
+    driver: local
