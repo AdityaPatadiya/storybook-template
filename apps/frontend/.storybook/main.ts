@@ -10,6 +10,10 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+  async viteFinal(config) {
+    config.server = { ...(config.server || {}), host: true, allowedHosts: true };
+    return config;
+  },
 };
 
 export default config;
