@@ -7,13 +7,10 @@ import Footer from './Footer';
 /**
  * Landing page assembling the main sections: Header, Hero, Features, and Footer.
  *
- * Layout:
- * - Root container uses a column flex layout and fills the viewport height.
- * - Header sits at the top.
- * - Hero expands to fill the remaining vertical space (flex‑grow).
- * - FeaturesSection follows the hero.
- * - Footer sticks to the bottom.
- * - Spacing between sections is consistent (≈24 px).
+ * Layout improvements:
+ * - Root container uses a column flex layout, fills the viewport, and applies a subtle background.
+ * - Consistent vertical spacing between sections.
+ * - Content is centered with a max‑width container for better readability on large screens.
  */
 export const LandingPage: React.FC = () => {
   return (
@@ -22,12 +19,15 @@ export const LandingPage: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        gap: '24px',
+        backgroundColor: '#f9fafb',
+        color: '#111',
+        gap: '2rem',
+        alignItems: 'center',
       }}
     >
       <Header />
       {/* Hero should take remaining space */}
-      <div style={{ flexGrow: 1 }}>
+      <div style={{ flexGrow: 1, width: '100%', maxWidth: '1200px' }}>
         <Hero />
       </div>
       <FeaturesSection />

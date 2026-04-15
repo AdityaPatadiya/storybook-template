@@ -39,6 +39,42 @@ export function Button({
 }: ButtonProps): JSX.Element {
   const isDisabled = disabled || isLoading;
 
+  const baseStyle: React.CSSProperties = {
+    ...VARIANT_STYLES[variant],
+    ...SIZE_STYLES[size],
+    width: fullWidth ? '100%' : undefined,
+    opacity: isDisabled ? 0.6 : 1,
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.5rem',
+    fontWeight: 500,
+    lineHeight: 1.2,
+    transition: 'background-color 120ms ease, transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease',
+    boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isDisabled) return;
+    const btn = e.currentTarget as HTMLElement;
+    btn.style.transform = 'translateY(-2px)';
+    btn.style.boxShadow = '0 8px 12px rgba(0,0,0,0.1)';
+    // Slightly darken primary background on hover
+    if (variant === 'primary') {
+      btn.style.background = '#1d4ed8';
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const btn = e.currentTarget as HTMLElement;
+    btn.style.transform = 'translateY(0)';
+    btn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.05)';
+    if (variant === 'primary') {
+      btn.style.background = VARIANT_STYLES[variant].background as string;
+    }
+  };
+
   return (
     <button
       type={type}
@@ -46,20 +82,9 @@ export function Button({
       aria-busy={isLoading || undefined}
       data-variant={variant}
       data-size={size}
-      style={{
-        ...VARIANT_STYLES[variant],
-        ...SIZE_STYLES[size],
-        width: fullWidth ? '100%' : undefined,
-        opacity: isDisabled ? 0.6 : 1,
-        cursor: isDisabled ? 'not-allowed' : 'pointer',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.5rem',
-        fontWeight: 500,
-        lineHeight: 1.2,
-        transition: 'opacity 120ms ease',
-      }}
+      style={baseStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       {...rest}
     >
       {isLoading ? <span aria-hidden>…</span> : leftIcon}
@@ -67,3 +92,4 @@ export function Button({
     </button>
   );
 }
+

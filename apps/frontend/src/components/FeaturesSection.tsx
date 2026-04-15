@@ -2,7 +2,8 @@ import React from 'react';
 import { FeatureCard } from './FeatureCard';
 
 /**
- * Section displaying a grid of feature cards.
+ * Section displaying a responsive grid of feature cards.
+ * Updated with a subtle background gradient and increased vertical padding for a more polished look.
  */
 export const FeaturesSection: React.FC = () => {
   const cards = [
@@ -14,15 +15,17 @@ export const FeaturesSection: React.FC = () => {
   return (
     <section
       style={{
-        padding: '4rem 2rem',
-        backgroundColor: '#fff',
+        padding: '6rem 2rem',
+        background: 'linear-gradient(180deg, #ffffff 0%, #f9fafb 100%)',
       }}
     >
       <div
         style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '2.5rem',
         }}
       >
         {cards.map((c, i) => (

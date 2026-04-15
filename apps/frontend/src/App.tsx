@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { trpc } from './trpc';
-import { UserFormContainer } from './components/UserFormContainer';
+import { LandingPage } from './components/LandingPage';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:4000/trpc';
 
@@ -17,18 +17,10 @@ export function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <main
-          style={{
-            fontFamily: 'system-ui, sans-serif',
-            padding: '2rem',
-            maxWidth: 640,
-            margin: '0 auto',
-          }}
-        >
-          <h1>Octo Studio</h1>
-          <UserFormContainer />
-        </main>
+        {/* Render the full landing page for a polished UI */}
+        <LandingPage />
       </QueryClientProvider>
     </trpc.Provider>
   );
 }
+
